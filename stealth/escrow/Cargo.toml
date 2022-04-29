@@ -1,0 +1,38 @@
+[package]
+name = "stealth-escrow"
+version = "0.0.1"
+description = "Timeout based escrow for stealth NFTs"
+authors = [
+    "Metaplex Developers <dev@metaplex.com>",
+    "Lawrence Wu <larry.wu@solana.com>",
+]
+repository = "https://github.com/metaplex-foundation/metaplex-program-library"
+keywords = ["solana"]
+edition = "2018"
+license = "AGPL-3.0-only"
+readme = "README.md"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+no-entrypoint = []
+no-idl = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = "0.22.1"
+anchor-spl = "0.22.1"
+mpl-token-metadata = { path = "../../token-metadata/program", features = ["no-entrypoint"] }
+solana-program = "1.9.4"
+spl-token = { version="3.2.0", features = [ "no-entrypoint" ] }
+stealth = { path = "../program", features = ["no-entrypoint"] }
+
+[target.'cfg(not(target_arch = "bpf"))'.dependencies]
+rand_core = "0.6.3"
+solana-program-test = "1.9.4"
+solana-sdk = "1.9.4"
+spl-associated-token-account = { version = "1.0.3", features = [ "no-entrypoint" ] }
+tarpc = "0.27.2"
+time = "0.1.40"
